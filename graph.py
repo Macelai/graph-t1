@@ -18,13 +18,11 @@ class Graph:
     def add_edge(self, v1, v2):
         if v1 in self.__vertices and v2 in self.__vertices:
             self.__vertices[v1].add(v2)
-            self.__vertices[v2].add(v1)
         else:
             print("One or two vertices not found")
 
     def remove_edge(self, v1, v2):
         if v1 in self.__verticies and v2 in self.vertices:
             self.__vertices[v1].discard(v2)
-            self.__vertices[v2].discard(v1)
         else:
             print("One or two vertices not found")
