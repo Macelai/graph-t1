@@ -3,26 +3,30 @@ class Graph:
     def __init__(self):
         self.__vertices = dict()
 
+
     def add_vertex(self, v):
         if v not in self.__vertices:
             self.__vertices[v] = set()
 
+
     def remove_vertex(self, v):
-        if v in self.__veritices:
-            for vertex in self.__vertifices:
-                self.__vertices[vertex].discard(v)
-            del self.__vertices[v]
-        else:
-            print("Vertex not found")
+        if v not in self.__vertices:
+            raise VertexNotFoundException
+
+        for vertex in self.__vertices:
+            self.__vertices[vertex].discard(v)
+        del self.__vertices[v]
+
 
     def add_edge(self, v1, v2):
-        if v1 in self.__vertices and v2 in self.__vertices:
-            self.__vertices[v1].add(v2)
-        else:
-            print("One or two vertices not found")
+        if v1 not in self.__vertices or v2 not in self.__vertices:
+            raise VertexNotFoundException(\
+                    "At least one vertex doesn't belongs to the graph.") 
+        self.__vertices[v1].add(v2)
+
 
     def remove_edge(self, v1, v2):
-        if v1 in self.__verticies and v2 in self.vertices:
-            self.__vertices[v1].discard(v2)
-        else:
-            print("One or two vertices not found")
+        if v1 not in self.__verticies or v2 not in self.vertices:
+            raise VertexNotFoundException(\
+                    "At least one vertex doesn't belongs to the graph.")
+        self.__vertices[v1].discard(v2)
