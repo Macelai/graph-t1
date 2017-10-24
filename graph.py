@@ -1,4 +1,4 @@
-class Graph:
+class Graph(object):
     
     def __init__(self):
         self.__vertices = dict()
@@ -26,7 +26,18 @@ class Graph:
 
 
     def remove_edge(self, v1, v2):
-        if v1 not in self.__verticies or v2 not in self.vertices:
+        if v1 not in self.__vertices or v2 not in self.__vertices:
             raise VertexNotFoundException(\
                     "At least one vertex doesn't belongs to the graph.")
         self.__vertices[v1].discard(v2)
+
+
+
+class VertexNotFoundException(Exception):
+    
+    def __init__(self, message = ''):
+        self.message = message
+
+
+    def __str__(self):
+        repr(self.message)            
