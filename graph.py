@@ -31,6 +31,11 @@ class Graph(object):
                     "At least one vertex doesn't belongs to the graph.")
         self.__vertices[v1].discard(v2)
 
+    def single_vertex(self, v):
+        if v not in self.__vertices:
+            raise VertexNotFoundException(\
+                    "Vertex not found.")
+        return self.__vertices[v]
 
 
 class VertexNotFoundException(Exception):
