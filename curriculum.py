@@ -2,23 +2,57 @@ from graph import Graph
 
 class Course(object):
 
-    def __init__(self, name, credits, semester, prereq):
-        self.__name = name
-        self.__credits = credits
-        self.__semester = semester
-        self.__prereq = prereq
+    def __init__(self, name, credits, semester, prereqs):
+        self._name = name
+        self._credits = credits
+        self._semester = semester
+        self._prereqs = prereqs
 
     
     @property
     def name(self):
-        return self.__name
+        return self._name
+
+    
+    @property
+    def credits(self):
+        return self._credits
+
+    
+    @property
+    def semester(self):
+        return self._semester
+
+    
+    @property
+    def prereqs(self):
+        return self._prereqs
 
 
 
 class Curriculum(object):
     
     def __init__(self):
-        self.__courses = [
+        self.courses = []
+        self.g = Graph()
+        self._populate_courses()
+        self.populate_graph()
+        
+
+    def populate_graph(self):
+        for course in self.courses:
+            self.g.add_vertex(course.name, course)
+            self.prereq_linkage(course)
+
+
+    def prereq_linkage(self, c):
+        if c.prereqs:
+            for prereq in c.prereqs:
+                self.g.add_edge(prereq, c.name)
+
+
+    def _populate_courses(self):
+        self.courses = [
             Course("eel5105", 5, 1, []),
             Course("ine5401", 2, 1, []),
             Course("ine5402", 6, 1, []),
@@ -60,13 +94,8 @@ class Curriculum(object):
             Course("ine5433", 6, 7, ["ine5427", "ine5453"]),
             Course("ine5434", 9, 8, ["ine5433"])
         ]
-        self.g = Graph()
-        
 
-    def populate_graph(self):
-        for course in self.__courses:
-            self.g.add_vertex(course)
-        for c in self.g.vertices():
-            print c.name()
-            
 
+
+if __name__ == "__main__":
+    c = Curriculum()
