@@ -1,4 +1,3 @@
-from random import choice
 
 """
 It represents a Graph, providing the following basic operations and informations:
@@ -19,9 +18,9 @@ class Graph(object):
         self.__vertices = dict()
 
 
-    def add_vertex(self, v):
+    def add_vertex(self, v, obj = None):
         if v not in self.__vertices:
-            self.__vertices[v] = set()
+            self.__vertices[v] = [obj, set()]
 
 
     def remove_vertex(self, v):
@@ -30,6 +29,7 @@ class Graph(object):
 
         for vertex in self.__vertices:
             self.__vertices[vertex].discard(v)
+
         del self.__vertices[v]
 
 
@@ -47,18 +47,16 @@ class Graph(object):
         self.__vertices[v1].discard(v2)
 
 
-    def single_vertex(self):
-        if not self.__vertices:
-            raise VertexNotFoundException("Empty graph")
-        return choice(self.__vertices.keys())
-
-
     def order(self):
         return len(self.__vertices)
 
 
     def vertices(self):
         return set(self.__vertices.keys())
+
+
+    def arbitrary_vertex(self):
+        return self.__vertices().pop()
 
 
     def adjacent(self, v):
@@ -69,6 +67,10 @@ class Graph(object):
     
     def degree(self, v):
         return len(self.adjacent(v))
+
+
+    def as_dict(self):
+        return self.__vertices
 
 
 class VertexNotFoundException(Exception):
