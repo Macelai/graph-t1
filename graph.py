@@ -37,7 +37,7 @@ class Graph(object):
         if v1 not in self.__vertices or v2 not in self.__vertices:
             raise VertexNotFoundException(\
                     "At least one vertex doesn't belongs to the graph.") 
-        self.__vertices[v1].add(v2)
+        self.__vertices[v1][1].add(v2)
 
 
     def remove_edge(self, v1, v2):
