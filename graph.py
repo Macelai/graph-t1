@@ -1,16 +1,14 @@
 """
-It represents a Graph with the following basic operations:
+It represents a Graph, providing the following basic operations and informations:
     vertex addition;
     vertex remotion;
     edge addition (connection between two vertices);
     edge remotion;
     order of graph (number of vertices);
-    to provide the vertex set;
-    to provide a specific vertex;
-    to provide adjacent vertices;
-    degree of an vertex.
-
-And the additional functions:
+    the vertices set;
+    a any vertex;
+    adjacent vertices to a vertex;
+    degree of a vertex.
 
 """
 class Graph(object):
@@ -62,7 +60,7 @@ class Graph(object):
 
 
     def vertex(self, something):
-        ...  # ?
+        return self.__vertices().pop()
 
 
     def adjacent(self, v):
