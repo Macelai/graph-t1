@@ -66,7 +66,7 @@ class Graph(object):
     def adjacent(self, v):
         if v not in self.__vertices:
             raise VertexNotFoundException("Vertex not found.")
-        return self.--vertices[v]
+        return self.__vertices[v]
 
     
     def degree(self, v):
