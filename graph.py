@@ -1,3 +1,5 @@
+from random import choice
+
 """
 It represents a Graph, providing the following basic operations and informations:
     vertex addition;
@@ -45,10 +47,10 @@ class Graph(object):
         self.__vertices[v1].discard(v2)
 
 
-    def single_vertex(self, v):  # tentar um nome melhor
-        if v not in self.__vertices:
-            raise VertexNotFoundException("Vertex not found.")
-        return self.__vertices[v]
+    def single_vertex(self):
+        if not self.__vertices:
+            raise VertexNotFoundException("Empty graph")
+        return choice(self.__vertices.keys())
 
 
     def order(self):
@@ -57,10 +59,6 @@ class Graph(object):
 
     def vertices(self):
         return set(self.__vertices.keys())
-
-
-    def vertex(self, something):
-        return self.__vertices().pop()
 
 
     def adjacent(self, v):
