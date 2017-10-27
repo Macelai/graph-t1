@@ -2,16 +2,16 @@ from graph import Graph
 
 class Course(object):
 
-    def __init__(self, name, credits, semester, prereqs):
-        self._name = name
+    def __init__(self, code, credits, semester, prereqs):
+        self._code = code
         self._credits = credits
         self._semester = semester
         self._prereqs = prereqs
 
     
     @property
-    def name(self):
-        return self._name
+    def code(self):
+        return self._code
 
     
     @property
@@ -41,14 +41,14 @@ class Curriculum(object):
 
     def populate_graph(self):
         for course in self.courses:
-            self.g.add_vertex(course.name, course)
+            self.g.add_vertex(course.code, course)
             self.prereq_linkage(course)
 
 
     def prereq_linkage(self, c):
         if c.prereqs:
             for prereq in c.prereqs:
-                self.g.add_edge(prereq, c.name)
+                self.g.add_edge(prereq, c.code)
 
 
     def _populate_courses(self):
