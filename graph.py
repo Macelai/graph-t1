@@ -56,13 +56,13 @@ class Graph(object):
 
 
     def arbitrary_vertex(self):
-        return self.__vertices().pop()
+        return self.vertices().pop()
 
 
     def adjacent(self, v):
         if v not in self.__vertices:
             raise VertexNotFoundException("Vertex not found.")
-        return self.__vertices[v]
+        return self.__vertices[v][1]
 
     
     def degree(self, v):
