@@ -10,12 +10,12 @@ It represents a Graph, providing the following basic operations and informations
     a any vertex;
     adjacent vertices to a vertex;
     degree of a vertex.
-
 """
 class Graph(object):
     
-    def __init__(self):
+    def __init__(self, v, obj = None):
         self.__vertices = dict()
+        self.add_vertex(v, obj)
 
 
     def add_vertex(self, v, obj = None):
@@ -71,6 +71,7 @@ class Graph(object):
 
     def as_dict(self):
         return self.__vertices
+
 
 
 class VertexNotFoundException(Exception):

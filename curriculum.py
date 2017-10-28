@@ -33,8 +33,10 @@ class Course(object):
 class Curriculum(object):
     
     def __init__(self):
-        self.courses = []
-        self.g = Graph()
+        # a first course, just to initialize graph
+        c = Course("eel5105", 5, 1, []) 
+        self.courses = [c]
+        self.g = Graph(c.code, c)
         self._populate_courses()
         self.populate_graph()
         
@@ -52,8 +54,7 @@ class Curriculum(object):
 
 
     def _populate_courses(self):
-        self.courses = [
-            Course("eel5105", 5, 1, []),
+        self.courses.extend([  # courses already has the first course ("eel5105")
             Course("ine5401", 2, 1, []),
             Course("ine5402", 6, 1, []),
             Course("ine5403", 6, 1, []),
@@ -93,7 +94,7 @@ class Curriculum(object):
             Course("ine5432", 4, 7, ["ine5423"]),
             Course("ine5433", 6, 7, ["ine5427", "ine5453"]),
             Course("ine5434", 9, 8, ["ine5433"])
-        ]
+        ])
 
 
 
