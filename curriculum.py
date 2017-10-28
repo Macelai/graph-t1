@@ -99,4 +99,10 @@ class Curriculum(object):
 
 
 if __name__ == "__main__":
+    import graph_func as funcs
+
     c = Curriculum()
+    im_false = funcs.isregular(c.g)
+    if im_false:
+        print("ta errado")
+    print("O currículo não é um grafo regular, isregular() OK")
