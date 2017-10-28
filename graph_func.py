@@ -19,7 +19,6 @@ def iscomplete(g):
 
 def transitive_closure(g, v, closure):
     for v in g.adjacent(v):
-        print("for ", v)
         if v not in closure:
             closure.add(v)
             transitive_closure(g, v, closure)

@@ -102,7 +102,15 @@ if __name__ == "__main__":
     import graph_func as funcs
 
     c = Curriculum()
-    im_false = funcs.isregular(c.g)
-    if im_false:
-        print("ta errado")
-    print("O currículo não é um grafo regular, isregular() OK")
+    if funcs.isregular(c.g):
+        print("isregular() deu errado")
+    print("currículo não é grafo regular, isregular() OK")
+
+    if funcs.iscomplete(c.g):
+        print("iscomplete() deu errado")
+    print("currículo não é grado completo, iscomplete() OK")
+
+    v = c.g.arbitrary_vertex()
+    closure = funcs.transitive_closure(c.g, "ine5404", set())
+    print(v)
+    print(closure)
