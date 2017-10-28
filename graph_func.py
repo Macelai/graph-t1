@@ -10,11 +10,20 @@ def isregular(g):
 
 
 def iscomplete(g):
-    ...
+    degree = g.order() - 1
+    for v in g.vertices():
+        if g.degree(v) != degree:
+            return False
+    return True
 
 
-def transitive_closure(g):
-    ...
+def transitive_closure(g, v, closure):
+    for v in g.adjacent(v):
+        print("for ", v)
+        if v not in closure:
+            closure.add(v)
+            transitive_closure(g, v, closure)
+    return closure
 
 
 def isconnected(g):
