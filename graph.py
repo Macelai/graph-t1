@@ -33,6 +33,10 @@ class Graph(object):
         del self.__vertices[v]
 
 
+    def get_ref(self, v):
+        return self.__vertices[v][0]
+
+
     def add_edge(self, v1, v2):
         if v1 not in self.__vertices or v2 not in self.__vertices:
             raise VertexNotFoundException(\
