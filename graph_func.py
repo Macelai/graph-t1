@@ -26,7 +26,11 @@ def transitive_closure(g, v, closure):
 
 
 def isconnected(g):
-    ...
+    try:
+        return g.vertices() == transitive_closure(g, g.arbitrary_vertex, set())
+    except:
+        return False      
+    
 
 
 def istree(g):
