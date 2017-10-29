@@ -1,4 +1,3 @@
-#!usr/bin/env python
 from graph import Graph
 
 class Course(object):

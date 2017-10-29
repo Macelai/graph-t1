@@ -1,6 +1,5 @@
-
 """
-It represents a Graph, providing the following basic operations and informations:
+It represents a Graph, providing the following basic operations:
     vertex addition;
     vertex remotion;
     edge addition (connection between two vertices);
@@ -9,7 +8,9 @@ It represents a Graph, providing the following basic operations and informations
     the vertices set;
     a any vertex;
     adjacent vertices to a vertex;
-    degree of a vertex.
+    degree of a vertex;
+    topological sorting;
+    transitive closure of an vertex.
 """
 class Graph(object):
     
@@ -79,6 +80,10 @@ class Graph(object):
             if v in x[1]:
                 deg += 1
         return deg
+    
+
+    def degree(self, v):
+        return self.exit_degree(v) + self.entry_degree(v)
 
     
     def fonts(self):
@@ -121,8 +126,10 @@ class Graph(object):
             if x not in visited:
                 self.topological_sorting(x, visited, top_sort)
         top_sort.append(v)
-        
 
+
+
+### Exceptions classes ###
 
 class VertexNotFoundException(Exception):
 
