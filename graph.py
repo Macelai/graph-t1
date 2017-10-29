@@ -14,7 +14,8 @@ It represents a Graph, providing the following basic operations and informations
 class Graph(object):
     
     def __init__(self, v, obj = None):
-        self.__vertices = dict() self.add_vertex(v, obj)
+        self.__vertices = dict()
+        self.add_vertex(v, obj)
 
 
     def add_vertex(self, v, obj = None):
@@ -76,11 +77,11 @@ class Graph(object):
         return self.__vertices
 
 
-    def transitive_closure(g, v, closure):
-        for v in g.adjacent(v):
+    def transitive_closure(self, v, closure):
+        for v in self.adjacent(v):
             if v not in closure:
                 closure.add(v)
-                transitive_closure(g, v, closure)
+                self.transitive_closure(v, closure)
         return closure
 
 

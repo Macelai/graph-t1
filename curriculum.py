@@ -105,13 +105,15 @@ if __name__ == "__main__":
     c = Curriculum()
     if funcs.isregular(c.g):
         print("isregular() deu errado")
-    print("currículo não é grafo regular, isregular() OK")
 
     if funcs.iscomplete(c.g):
         print("iscomplete() deu errado")
-    print("currículo não é grado completo, iscomplete() OK")
 
     v = c.g.arbitrary_vertex()
-    closure = funcs.transitive_closure(c.g, v, set())
+    closure = c.g.transitive_closure(v, set())
     print(v)
     print(closure)
+
+
+    if funcs.isconnected(c.g):
+        print("isconnected() deu errado")
