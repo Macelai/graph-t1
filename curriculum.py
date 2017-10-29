@@ -118,3 +118,7 @@ if __name__ == "__main__":
     if funcs.isconnected(c.g):
         print("isconnected() deu errado")
     print("curriculo nao e um grafo conexo, is connected(), OK")
+
+    if funcs.istree(c.g):
+        print("istree() deu errado")
+    print("curriculo nao e uma arvore, istree() OK")
