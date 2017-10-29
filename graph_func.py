@@ -2,9 +2,10 @@ from graph import Graph
 
 def isregular(g):
     x = g.arbitrary_vertex()
-    d = g.degree(x)
+    d = g.exit_degree(x) + g.entry_degree(x)
     for v in g.vertices():
-        if g.degree(v) != d:
+        v_deg = g.exit_degree(v) + g.entry_degree(v)
+        if v_deg != d:
             return False
     return True
 
@@ -12,29 +13,30 @@ def isregular(g):
 def iscomplete(g):
     degree = g.order() - 1
     for v in g.vertices():
-        if g.degree(v) != degree:
+        deg_v = g.exit_degree(v) + g.entry_degree(v)
+        if deg_v != degree:
             return False
     return True
 
 
 def isconnected(g):
-    try:
-        return g.vertices() == transitive_closure(g, g.arbitrary_vertex(), set())
-    except:
-        return False      
+        return g.vertices() == g.transitive_closure(g.arbitrary_vertex(), set())
     
 
 def istree(g):
     v = g.arbitrary_vertex()
     return isconnected(g) and not hascicle(g, v, v, set())
 
-def hascicle(g, v, previousv, visited):
+
+def hascycle(g, v, prev, visited):
     if v in visited:
         return True
+
     visited.add(v)
     for vertex in g.adjacent(v):
-        if vertex != previousv:
-            if hascicle(vertex, v, visited):
+        if vertex != prev:
+            if hascycle(g, vertex, v, visited):
                 return True
+
     visited.remove(v)
     return False

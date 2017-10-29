@@ -69,8 +69,24 @@ class Graph(object):
         return self.__vertices[v][1]
 
     
-    def degree(self, v):
+    def exit_degree(self, v):
         return len(self.adjacent(v))
+
+
+    def entry_degree(self, v):
+        deg = 0
+        for x in self.__vertices:
+            if v in x[1]:
+                deg += 1
+        return deg
+
+    
+    def fonts(self):
+        fonts = set()
+        for v in self.__vertices:
+            if self.entry_degree(v) == 0:
+                fonts.add(v)
+        return fonts
 
 
     def as_dict(self):
@@ -84,9 +100,42 @@ class Graph(object):
                 self.transitive_closure(v, closure)
         return closure
 
+    
+    def get_topological_sorting(self):
+        import graph_func as funcs
+        v = self.arbitrary_vertex()
+        if funcs.hascycle(self, v, v, set()):
+            raise DoesNotApplyException("Graph isn't a DAG")
+
+        top_sort = []
+        visited = set()
+        for f in self.fonts():
+            self.topological_sorting(f, visited, top_sort)
+
+        return top_sort
+
+
+    def topological_sorting(self, v, visited, top_sort):        
+        visited.add(v)
+        for x in self.adjacent(v):
+            if x not in visited:
+                self.topological_sorting(x, visited, top_sort)
+        top_sort.append(v)
+        
 
 
 class VertexNotFoundException(Exception):
+
+    def __init__(self, message = ''):
+        self.message = message
+
+
+    def __str__(self):
+        repr(self.message)
+
+
+
+class DoesNotApplyException(Exception):
 
     def __init__(self, message = ''):
         self.message = message
