@@ -29,7 +29,7 @@ class Graph(object):
             raise VertexNotFoundException
 
         for vertex in self.__vertices:
-            self.__vertices[vertex].discard(v)
+            self.__vertices[vertex][1].discard(v)
 
         del self.__vertices[v]
 
@@ -77,7 +77,7 @@ class Graph(object):
     def entry_degree(self, v):
         deg = 0
         for x in self.__vertices:
-            if v in x[1]:
+            if v in self.__vertices[x][1]:
                 deg += 1
         return deg
     

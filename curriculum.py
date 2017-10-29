@@ -124,5 +124,4 @@ if __name__ == "__main__":
     print("curriculo nao e uma arvore, istree() OK")
     
 
-    # apenas rodando o método
-    c.g.get_topological_sorting()
+    print(c.g.get_topological_sorting())
