@@ -17,14 +17,6 @@ def iscomplete(g):
     return True
 
 
-def transitive_closure(g, v, closure):
-    for v in g.adjacent(v):
-        if v not in closure:
-            closure.add(v)
-            transitive_closure(g, v, closure)
-    return closure
-
-
 def isconnected(g):
     ...
 

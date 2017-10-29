@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 from graph import Graph
 
 class Course(object):
@@ -111,6 +112,6 @@ if __name__ == "__main__":
     print("currículo não é grado completo, iscomplete() OK")
 
     v = c.g.arbitrary_vertex()
-    closure = funcs.transitive_closure(c.g, "ine5404", set())
+    closure = funcs.transitive_closure(c.g, v, set())
     print(v)
     print(closure)
