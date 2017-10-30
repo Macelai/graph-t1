@@ -36,21 +36,26 @@ class Curriculum(object):
         # a first course, just to initialize graph
         c = Course("eel5105", 5, 1, []) 
         self.courses = [c]
-        self.g = Graph(c.code, c)
+        self._graph = Graph(c.code, c)
         self._populate_courses()
         self.populate_graph()
         
+    
+    @property
+    def graph(self):
+        return self._graph
+    
 
     def populate_graph(self):
         for course in self.courses:
-            self.g.add_vertex(course.code, course)
+            self._graph.add_vertex(course.code, course)
             self.prereq_linkage(course)
 
 
     def prereq_linkage(self, c):
         if c.prereqs:
             for prereq in c.prereqs:
-                self.g.add_edge(prereq, c.code)
+                self._graph.add_edge(prereq, c.code)
 
 
     def _populate_courses(self):
@@ -58,13 +63,13 @@ class Curriculum(object):
             Course("ine5401", 2, 1, []),
             Course("ine5402", 6, 1, []),
             Course("ine5403", 6, 1, []),
-            Course("mtm3101", 4, 1, []),
+            Course("mtm5161", 4, 1, []),
             Course("ine5404", 6, 2, ["ine5402"]),
-            Course("ine5405", 5, 2, ["mtm3101"]),
+            Course("ine5405", 5, 2, ["mtm5161"]),
             Course("ine5406", 5, 2, ["eel5105"]),
             Course("ine5407", 3, 2, []),
             Course("mtm5512", 4, 2, []),
-            Course("mtm7174", 4, 2, ["mtm3101"]),
+            Course("mtm7174", 4, 2, ["mtm5161"]),
             Course("ine5408", 6, 3, ["ine5404"]),
             Course("ine5409", 4, 3, ["mtm5512", "mtm7174"]),
             Course("ine5410", 4, 3, ["ine5404"]),

@@ -4,51 +4,64 @@ from graph import Graph, VertexNotFoundException
 from curriculum import Curriculum
 import graph_func as funcs
 
-if __name__ == "__main__":
-    c = Curriculum()
-    
-    print("Ordem topologica do curriculo:")
-    print(c.g.get_topological_sorting())
 
-    print("*"*120)
-    
-    print("Quantos semestres voce ja cursou?")
-    semester = int(input(""))
+### Functions ###
 
-    print("Digite o codigo das disciplinas que voce ja foi aprovado, ine5401 por exemplo:")
-    print("Digite 'fim' para finalizar a insercao")
-
+def read_courses():
     course = input("")
     completed = list()
     while course != "fim":
         completed.append(course)
         course = input("")
+    return completed
 
-    for course in completed:
-        c.g.remove_vertex(course)
 
-    print("*"*120)
-    print("Plano para semestres subsequentes: ")
-
-    while c.g.order() > 0:
-        fonts = c.g.fonts()
-
+def define_plan(n_smts):
+    while g.order() > 0:
+        fonts = g.fonts()  # getting vertices that has exit degree equals to 0
         total_hours = 0
         recommended = list()
 
         for v in fonts:
-            if total_hours + c.g.as_dict()[v][0].credits <= 28:
+            v_credits = g.as_dict()[v][0].credits  # [0]: get Course object
+            if total_hours + v_credits <= 28:
                 recommended.append(v)
-                total_hours += c.g.as_dict()[v][0].credits
+                total_hours += v_credits
 
-        semester += 1
-        print("Faca no "+str(semester)+"o semestre:")
+        n_smts += 1
+        print(str(n_smts) + "º semestre:")
         for course in recommended:
             print("{} ".format(course), end='')
         print("\n")
 
         for course in recommended:
-            c.g.remove_vertex(course)
+            g.remove_vertex(course)
 
-    print("*"*120)
-    print("Desenvolvido por Ramna Sidharta e Vinicius Macelai UFSC-2017")
+
+### RUN ###
+
+c = Curriculum()
+g = c.graph
+    
+print("Ordem topológica do currículo:")
+print(g.get_topological_sorting())
+print("*"*80, end='\n\n')
+
+
+print("Quantos semestres você já cursou?")
+n_smts = int(input(""))
+
+
+print("Digite o código das disciplinas nas quais você já foi aprovado (ine5413, por exemplo):")
+print("Digite 'fim' para finalizar a inserção")
+completed = read_courses()
+for course in completed:
+    g.remove_vertex(course)
+
+
+print("*"*80, end='\n\n')
+print("Plano para semestres subsequentes\n")
+define_plan(n_smts)
+
+print("*"*80)
+print("Desenvolvido por Ramna Sidharta e Vinicius Macelai UFSC-2017")

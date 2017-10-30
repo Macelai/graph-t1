@@ -117,7 +117,7 @@ class Graph(object):
         for f in self.fonts():
             self.topological_sorting(f, visited, top_sort)
 
-        return top_sort
+        return list(reversed(top_sort))
 
 
     def topological_sorting(self, v, visited, top_sort):        
@@ -129,7 +129,7 @@ class Graph(object):
 
 
 
-### Exceptions classes ###
+### Exception classes ###
 
 class VertexNotFoundException(Exception):
 
