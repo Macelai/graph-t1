@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-
+# -*- coding: utf-8 -*-
 from graph import Graph, VertexNotFoundException
 from curriculum import Curriculum
 import graph_func as funcs
