@@ -33,7 +33,7 @@ class Course(object):
 class Curriculum(object):
     
     def __init__(self):
-        # a first course, just to initialize graph
+        # a first course, just to initialize the graph
         c = Course("eel5105", 5, 1, []) 
         self.courses = [c]
         self._graph = Graph(c.code, c)

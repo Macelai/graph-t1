@@ -33,9 +33,8 @@ def hascycle(g, v, prev, visited):
 
     visited.add(v)
     for vertex in g.adjacent(v):
-        if vertex != prev:
-            if hascycle(g, vertex, v, visited):
-                return True
+        if vertex != prev and hascycle(g, vertex, v, visited):
+            return True
 
     visited.remove(v)
     return False
